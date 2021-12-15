@@ -1,0 +1,121 @@
+body {
+  @apply flex items-center justify-around h-screen font-sans text-base;
+
+  color: rgb(255, 220, 254);
+  text-shadow: 0 0 8px #E54EA2;
+}
+
+.error-summary,.checkout__alert {
+  color: rgb(241, 153, 153);
+  text-shadow: 0 0 8px rgb(176, 0, 0);
+}
+
+h1, h3 {
+  filter: blur(1px);
+}
+
+h1 {
+  @apply text-center text-5xl mt-0 mb-16;
+}
+
+h3 {
+  @apply uppercase text-base;
+}
+
+#app {
+  @apply p-24;
+
+  max-height: 95vh;
+  width: 40vw;
+
+  min-width: 700px;
+
+  --border-thickness: 3px;
+  --border-color: #689DE6;
+
+  // Has to be a multiple of 4 to work with repeating gradient
+  --border-width:48px;
+
+  border: var(--border-thickness) solid transparent; /* space for the border */
+  --g:#0000 90deg,var(--border-color) 0;
+  //noinspection CssInvalidFunction
+  background:
+    conic-gradient(from 90deg  at top    var(--border-thickness) left  var(--border-thickness),var(--g)) 0    0 no-repeat,
+    conic-gradient(from 180deg at top    var(--border-thickness) right var(--border-thickness),var(--g)) 100% 0 no-repeat,
+    conic-gradient(from 0deg   at bottom var(--border-thickness) left  var(--border-thickness),var(--g)) 0    100% no-repeat,
+    conic-gradient(from -90deg at bottom var(--border-thickness) right var(--border-thickness),var(--g)) 100% 100% no-repeat,
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 220, 254, 0.1),
+      rgba(255, 220, 254, 0.1) 2px,
+      rgba(45, 13, 90, 0.19) 2px,
+      rgba(45, 13, 90, 0.19) 4px
+    );
+
+  background-size: var(--border-width) var(--border-width);
+  background-origin: border-box;
+}
+
+svg {
+  fill: #689DE6;
+}
+
+input,select {
+  @apply p-4 uppercase w-full box-border text-sm;
+
+  color: rgb(255, 220, 254);
+  text-shadow: 0 0 8px rgb(229, 78, 162);
+
+  border: 3px solid #689DE6;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.checkout {
+  &__input-group {
+    @apply my-2;
+  }
+  &__name, &__city-country, &__code-state, &__payment-subtitle {
+    @apply -my-2 flex w-full;
+
+    > * {
+      @apply grow basis-1/2;
+    }
+    > * + * {
+      @apply ml-2;
+    }
+  }
+
+  &__stripe-element {
+    @apply p-4;
+
+    border: 3px solid #689DE6;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.62);
+  }
+
+  &__submit {
+    @apply block mx-auto mt-12 w-full p-4 text-white uppercase text-lg font-bold cursor-pointer opacity-75
+      border-0;
+
+    background: rgb(255, 58, 169);
+
+    &:not(:disabled):hover {
+      background: rgb(203, 0, 107);
+    }
+
+    max-width: 60%;
+
+    &--disabled {
+      @apply cursor-not-allowed;
+      background: rgba(134, 134, 134, 0.5);
+    }
+  }
+}
+
+.stripe-logo {
+  @apply inline-block basis-0 flex items-center justify-end;
+  svg {
+    @apply max-h-7;
+  }
+}

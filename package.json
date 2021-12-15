@@ -1,0 +1,32 @@
+{
+  "name": "unity-demo",
+  "version": "0.0.0",
+  "license": "proprietary",
+  "private": true,
+  "scripts": {
+    "serve": "parcel src/index.html",
+    "build": "rimraf dist && parcel build src/index.html"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "@parcel/transformer-svg-react": "^2.0.1",
+    "autoprefixer": "^10.4.0",
+    "parcel": "^2.0.1",
+    "postcss": "^8.4.5",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^3.0.2"
+  },
+  "dependencies": {
+    "@chec/commerce.js": "^2.8.0",
+    "@chec/react-commercejs-hooks": "^0.3.1",
+    "@hookform/error-message": "^2.0.0",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.22.0",
+    "classnames": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^6.12.2",
+    "use-debounce": "^7.0.1"
+  }
+}
