@@ -1,4 +1,4 @@
-## Unity demo project
+## Simple demo project
 
 Use the files in the `dist` folder. `index.html` is the page to serve.
 
