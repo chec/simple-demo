@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-    <link rel="stylesheet" href="style.scss" />
+    <style>
+        @import "style.scss";
+    </style>
 </head>
 <body>
     <div id="app"></div>
-    <script type="module" src="index.js"></script>
+    <script type="module">
+      import ReactDOM from "react-dom";
+      import App from "./App";
+
+      const app = document.getElementById("app");
+      ReactDOM.render(<App />, app);
+    </script>
 </body>
 </html>
