@@ -102,8 +102,6 @@ export default function ProductOptions({ product }) {
     );
   };
 
-  console.log(product);
-
   return (
     <>
       <div

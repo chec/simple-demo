@@ -106,8 +106,7 @@ input,select {
       }
     }
     span {
-      @apply absolute top-0.5 left-0.5 text-center pointer-events-none box-border text-lg;
-      width: calc(3rem - 3px);
+      @apply absolute top-0 left-0 text-center pointer-events-none box-border text-lg w-12;
       margin-top: 8px;
     }
   }

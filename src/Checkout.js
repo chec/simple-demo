@@ -35,10 +35,11 @@ export default function Checkout() {
   const isFree = useIsFree();
 
   if (!checkout) {
-    return '';
+    return 'Loading...';
   }
 
   if (order) {
+    console.log('hey unreal. we done here');
     return <div>Order complete</div>
   }
 
@@ -167,7 +168,6 @@ export default function Checkout() {
   };
 
   const hasShipping = checkout?.live.shipping?.id !== undefined;
-  console.log('ship', hasShipping);
 
   /**
    * If there are any errors returned from the API after form
@@ -203,8 +203,6 @@ export default function Checkout() {
       </div>
     );
   };
-
-   console.log(checkout);
 
   return (
     <form
