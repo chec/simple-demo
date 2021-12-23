@@ -4,69 +4,36 @@ import ErrorMessageContainer from './ErrorMessageContainer';
 export default function Customer({ form: { register, errors }, extrafields }) {
   return (
     <>
-      <h3
-        className="checkout__subtitle"
-      >
-        Who are we sending this to?
-      </h3>
-      <div className="checkout__name">
-        <div className="checkout__input-group">
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            placeholder="First name"
-            aria-label="First name"
-            aria-invalid={errors.first_name ? 'true' : 'false'}
-            ref={register({
-              required: { value: true, message: 'Please enter your name.' },
-              maxLength: { value: 50, message: 'Max length exceeded.' },
-              minLength: { value: 2, message: 'Must be at least 2 characters.' },
-            })}
-            className="checkout__input"
-          />
-          <ErrorMessage
-            errors={errors}
-            name="first_name"
-            as={<ErrorMessageContainer />}
-            render={({ messages }) => messages && (
-              Object.entries(messages).map(([type, message]) => (
-                <p key={type}>{message}</p>
-              )))}
-          />
-        </div>
-        <div className="checkout__input-group">
-          <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            placeholder="Last name"
-            aria-label="Last name"
-            aria-invalid={errors.last_name ? 'true' : 'false'}
-            ref={register({
-              required: { value: true, message: 'Please enter your last name.' },
-              maxLength: { value: 50, message: 'Max length exceeded.' },
-              minLength: { value: 1, message: 'Must be at least 2 characters.' },
-            })}
-            className="checkout__input"
-          />
-          <ErrorMessage
-            errors={errors}
-            name="last_name"
-            as={<ErrorMessageContainer />}
-            render={({ messages }) => messages
-              && Object.entries(messages).map(([type, message]) => (
-                <p key={type}>{message}</p>
-              ))}
-          />
-        </div>
+      <div className="checkout__input-group">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          aria-label="Name"
+          aria-invalid={errors.name ? 'true' : 'false'}
+          ref={register({
+            required: { value: true, message: 'Please enter your name.' },
+            maxLength: { value: 50, message: 'Max length exceeded.' },
+            minLength: { value: 2, message: 'Must be at least 2 characters.' },
+          })}
+          className="checkout__input"
+        />
+        <ErrorMessage
+          errors={errors}
+          name="name"
+          as={<ErrorMessageContainer />}
+          render={({ messages }) => messages && (
+            Object.entries(messages).map(([type, message]) => (
+              <p key={type}>{message}</p>
+            )))}
+        />
       </div>
       <div className="checkout__input-group">
         <input
           type="text"
           id="email"
           name="email"
-          placeholder="Email"
+          placeholder="Email address"
           aria-label="Email address"
           aria-invalid={errors.email ? 'true' : 'false'}
           ref={register({

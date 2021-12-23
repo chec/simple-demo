@@ -12,11 +12,15 @@ import Customer from './Checkout/Customer';
 import Shipping from './Checkout/Shipping';
 import Payment from './Checkout/Payment';
 import PurchaseButton from './Checkout/PurchaseButton';
+import ProductOptions from './Checkout/ProductOptions';
 import isGatewayAvailable from './isGatewayAvailable';
+import ShippingOverview from './Checkout/ShippingOverview';
+import PaymentMethodSelector from './Checkout/PaymentMethodSelector';
 
 export default function Checkout() {
   const form = useForm({ criteriaMode: 'all', shouldFocusError: true });
   const [capturing, setCapturing] = useState(false);
+  const [showShipping, setShowShipping] = useState(false);
   const [order, setOrder] = useState();
   const [serverErrors, setServerErrors] = useState([]);
   const {
@@ -97,8 +101,6 @@ export default function Checkout() {
         country: data.country,
       };
     }
-
-    console.log('hi');
 
     // Define billing to either store same shipping data
     // or billing data from billing fields
@@ -202,25 +204,37 @@ export default function Checkout() {
     );
   };
 
+   console.log(checkout);
+
   return (
     <form
       action=""
       className="checkout__form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1>Secured checkout</h1>
-      {/*<ProductOptions product={checkout.line_items[0]} />*/}
-      <ErrorSummary errors={errors} />
-      <Customer form={form} />
-      <Shipping form={form} />
-      <Payment form={form} />
-      { renderServerErrorMessage() }
-      <PurchaseButton
-        form={form}
-        // eslint-disable-next-line no-mixed-operators
-        processing={isSubmitting || capturing && !isSubmitSuccessful}
-        disabled={checkout?.has.physical_delivery && !hasShipping}
-      />
+      <ProductOptions product={checkout.products[0]} />
+      <div>
+        <h1>Checkout</h1>
+        <ErrorSummary errors={errors} />
+        { showShipping || (
+          <>
+            <Customer form={form} />
+            <div className="checkout__payment-and-address">
+              <div><PaymentMethodSelector /></div>
+              <div><ShippingOverview /></div>
+            </div>
+          </>
+        )}
+        { showShipping && <Shipping form={form} /> }
+        <Payment form={form} />
+        { renderServerErrorMessage() }
+        <PurchaseButton
+          form={form}
+          // eslint-disable-next-line no-mixed-operators
+          processing={isSubmitting || capturing && !isSubmitSuccessful}
+          disabled={checkout?.has.physical_delivery && !hasShipping}
+        />
+      </div>
     </form>
   )
 }

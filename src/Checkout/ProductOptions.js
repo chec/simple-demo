@@ -54,13 +54,13 @@ export default function ProductOptions({ product }) {
   /**
    * Handle variant option select for multi-variants
    */
-  const handleVariantChange = ({ target: { id, value } }) => {
-    setVariantOption({ ...selectedVariantOption, [id]: value });
+  const handleVariantChange = ({ target: { name, value } }) => {
+    setVariantOption({ ...selectedVariantOption, [name]: value });
 
     // Check the variant is valid (it probably is) and update the checkout token in state
     const lineItemId = checkout ? checkout.live.line_items[0].id : null;
     if (lineItemId && value) {
-      checkVariant(lineItemId, id, value);
+      checkVariant(lineItemId, name, value);
     }
   };
 
@@ -70,46 +70,31 @@ export default function ProductOptions({ product }) {
    * @returns {JSX.Element}
    */
   const renderVariants = () => {
-    if (!product || !product.variants.length) {
+    if (!product || !product.variant_groups.length) {
       return null;
     }
 
     return (
       <>
-        <hr
-          className="product__divider"
-        />
         <div className="product__variant-container">
-          {product.variants.map((variant) => (
+          {product.variant_groups.map((variant) => (
             <div
               className="product__variant-select-container"
               key={variant.id}
             >
-              <label className="product__variant-name">
+              <h3 className="product__variant-name">
                 {variant.name}
-              </label>
-              <select
-                className="product__variant-select"
-                id={variant.id}
-                name={variant.id}
-                aria-label={variant.name}
-                onChange={handleVariantChange}
-                defaultValue=""
-              >
-                <option value="">
-                  Choose { variant.name }
-                </option>
+              </h3>
+              <div className="product__variant-options">
                 {
-                variant.options.map((option) => (
-                  <option
-                    value={option.id}
-                    key={option.id}
-                  >
-                    {option.name}
-                  </option>
-                ))
-              }
-              </select>
+                  variant.options.map((option) => (
+                    <div className="product__variant-option">
+                      <input type="radio" value={option.id} name={variant.id} onChange={handleVariantChange} />
+                      <span>{ option.name }</span>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           ))}
         </div>
@@ -117,36 +102,14 @@ export default function ProductOptions({ product }) {
     );
   };
 
+  console.log(product);
+
   return (
     <>
       <div
         className="product"
       >
-        <div className="product__header">
-          <p className="product__name">
-            {product.name}
-          </p>
-          <div className="product__quantity">
-            <span>Quantity:</span>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              value={selectedQuantity}
-              onChange={({ target: { value } }) => setQuantity(value)}
-              aria-label="Quantity"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="quantity"
-              as={<ErrorMessageContainer />}
-              render={({ messages }) => messages
-                && Object.entries(messages).map(([type, message]) => (
-                  <p key={type}>{message}</p>
-                ))}
-            />
-          </div>
-        </div>
+        { product.image && <img className="product__image" src={product.image.url} /> }
         { renderVariants() }
       </div>
     </>

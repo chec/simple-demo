@@ -1,7 +1,9 @@
 body {
-  @apply flex items-center justify-around h-screen font-sans text-base;
+  @apply flex items-center justify-around h-screen font-sans text-base uppercase;
 
-  color: rgb(255, 220, 254);
+  @apply bg-slate-800;
+
+  color: rgb(255, 167, 254);
   text-shadow: 0 0 8px #E54EA2;
 }
 
@@ -10,25 +12,22 @@ body {
   text-shadow: 0 0 8px rgb(176, 0, 0);
 }
 
-h1, h3 {
+h1 {
+  @apply text-center text-3xl mt-0 mb-16;
   filter: blur(1px);
 }
 
-h1 {
-  @apply text-center text-5xl mt-0 mb-16;
-}
-
 h3 {
-  @apply uppercase text-base;
+  @apply text-base;
+  filter: blur(0.33px);
 }
 
 #app {
   @apply p-24;
 
   max-height: 95vh;
-  width: 40vw;
 
-  min-width: 700px;
+  min-width: 900px;
 
   --border-thickness: 3px;
   --border-color: #689DE6;
@@ -38,7 +37,7 @@ h3 {
 
   border: var(--border-thickness) solid transparent; /* space for the border */
   --g:#0000 90deg,var(--border-color) 0;
-  //noinspection CssInvalidFunction
+  // noinspection CssInvalidFunction
   background:
     conic-gradient(from 90deg  at top    var(--border-thickness) left  var(--border-thickness),var(--g)) 0    0 no-repeat,
     conic-gradient(from 180deg at top    var(--border-thickness) right var(--border-thickness),var(--g)) 100% 0 no-repeat,
@@ -46,14 +45,17 @@ h3 {
     conic-gradient(from -90deg at bottom var(--border-thickness) right var(--border-thickness),var(--g)) 100% 100% no-repeat,
     repeating-linear-gradient(
       180deg,
-      rgba(255, 220, 254, 0.1),
-      rgba(255, 220, 254, 0.1) 2px,
+      rgba(255, 220, 254, 0.15),
+      rgba(255, 220, 254, 0.15) 2px,
       rgba(45, 13, 90, 0.19) 2px,
       rgba(45, 13, 90, 0.19) 4px
     );
-
   background-size: var(--border-width) var(--border-width);
   background-origin: border-box;
+
+  //background: url("./bg.svg");
+  //background-size: auto 100%;
+
 }
 
 svg {
@@ -63,15 +65,65 @@ svg {
 input,select {
   @apply p-4 uppercase w-full box-border text-sm;
 
-  color: rgb(255, 220, 254);
+  color: rgb(255, 167, 254);
   text-shadow: 0 0 8px rgb(229, 78, 162);
 
-  border: 3px solid #689DE6;
+  border: 3px solid rgb(104, 157, 230);
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.62);
 }
 
+.product {
+  @apply mr-8 flex flex-col items-center;
+
+  &__image {
+    @apply max-w-sm;
+  }
+
+  &__variant-options {
+    @apply flex justify-center;
+  }
+
+  &__variant-name {
+    @apply text-center;
+  }
+
+  &__variant-option {
+    @apply relative w-12 h-12 box-border ml-2;
+
+    input {
+      @apply invisible;
+
+      &::before {
+        @apply absolute left-0 top-0 w-12 h-12 block visible cursor-pointer box-border;
+        content: " ";
+        border: 3px solid rgba(255, 167, 254, 0.3);
+        border-radius: 4px;
+        background: rgba(255, 167, 254, 0.1);
+      }
+
+      &:checked::before {
+        background: rgba(104, 157, 230, 0.2);
+        border: 3px solid rgba(255, 167, 254, 0.9);
+      }
+    }
+    span {
+      @apply absolute top-0.5 left-0.5 text-center pointer-events-none box-border text-lg;
+      width: calc(3rem - 3px);
+      margin-top: 8px;
+    }
+  }
+}
+
 .checkout {
+  &__form {
+    @apply flex;
+
+    > * {
+      @apply basis-1/2;
+    }
+  }
+
   &__input-group {
     @apply my-2;
   }
@@ -84,6 +136,17 @@ input,select {
     > * + * {
       @apply ml-2;
     }
+  }
+
+  &__payment-subtitle {
+    @apply mt-4;
+  }
+
+  &__payment-and-address {
+    @apply flex;
+     > * {
+       @apply basis-1/2;
+     }
   }
 
   &__stripe-element {
@@ -109,6 +172,37 @@ input,select {
     &--disabled {
       @apply cursor-not-allowed;
       background: rgba(134, 134, 134, 0.5);
+    }
+  }
+}
+
+.payment-method-selector {
+  @apply list-none pl-0 text-sm;
+
+  label {
+    @apply flex items-baseline cursor-pointer;
+
+    input {
+      width: 2rem;
+    }
+  }
+}
+
+.shipping-overview {
+  @apply text-xs p-2 relative;
+
+  color: rgba(255, 167, 254, 0.6);
+
+  border: 3px solid #689DE6;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.62);
+
+  &__change {
+    @apply absolute right-0 bottom-0 mb-1 border-0 bg-transparent uppercase text-xs cursor-pointer;
+    color: rgb(255, 167, 254);
+
+    &:hover {
+      color: rgb(255, 81, 249);
     }
   }
 }
