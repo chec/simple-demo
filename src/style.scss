@@ -1,8 +1,6 @@
 body {
   @apply flex items-center justify-around h-screen font-sans text-base uppercase;
 
-  @apply bg-slate-800;
-
   color: rgb(255, 167, 254);
   text-shadow: 0 0 8px #E54EA2;
 }
