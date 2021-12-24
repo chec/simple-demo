@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   useConditionals,
@@ -34,13 +34,20 @@ export default function Checkout() {
   const capture = useCapture();
   const isFree = useIsFree();
 
+  useEffect(() => {
+    if (!order?.id) {
+      console.log('o', order);
+      return;
+    }
+    console.log('hey unreal. we done here');
+  }, [order?.id]);
+
   if (!checkout) {
     return 'Loading...';
   }
 
   if (order) {
-    console.log('hey unreal. we done here');
-    return <div>Order complete</div>
+    return <h1 className="order-complete">Order complete</h1>
   }
 
   /**

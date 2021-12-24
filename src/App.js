@@ -19,7 +19,9 @@ export default function App() {
   return (
     <CommerceProvider
       publicKey={process.env.CHEC_API_KEY}
-      options={{ url: process.env.CHEC_API_URL || 'https://api.chec.io/' }}
+      options={{
+        url: process.env.CHEC_API_URL || 'https://api.chec.io/',
+      }}
     >
       <CheckoutProvider
         type="product_id"

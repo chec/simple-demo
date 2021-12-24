@@ -5,7 +5,7 @@ export default function PaymentMethodSelector() {
       <ul className="payment-method-selector">
         <li>
           <label htmlFor="payment-card">
-            <input id="payment-card" type="radio" name="chosen_method" value="card" />
+            <input id="payment-card" type="radio" name="chosen_method" value="card" checked />
             Card
           </label>
         </li>

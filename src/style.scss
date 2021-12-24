@@ -20,6 +20,10 @@ h3 {
   filter: blur(0.33px);
 }
 
+.order-complete {
+  @apply text-center mb-0;
+}
+
 #app {
   @apply p-24;
 
@@ -72,7 +76,7 @@ input,select {
 }
 
 .product {
-  @apply mr-8 flex flex-col items-center;
+  @apply mr-8 flex flex-col items-center -ml-12 -mt-4;
 
   &__image {
     @apply max-w-sm;

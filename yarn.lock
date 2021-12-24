@@ -220,10 +220,10 @@
     "@babel/runtime" "^7.7.4"
     axios "^0.21.1"
 
-"@chec/react-commercejs-hooks@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@chec/react-commercejs-hooks/-/react-commercejs-hooks-0.3.1.tgz#c13346536b9a84d24cf65d5abe10c96ca94f253d"
-  integrity sha512-JrxBgqZWvm/0g+W7CiFK1UwA6OotyhSuihIFzvJzFmTFQvnoUMXVRjaViQvWr/PBGn5kRNNUn2Kpjq9SL6D4BQ==
+"@chec/react-commercejs-hooks@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@chec/react-commercejs-hooks/-/react-commercejs-hooks-0.3.2.tgz#f300d00a9d4eb5f182ff8894f0107cd2c8d1ccb0"
+  integrity sha512-PF54rvhDdLAcBP4Yf6mGmGlbTyEWYINbomffa7V6Hjs1+w0IShJR7ycDYvl13mI7r5ApKb5odpe05TjD09rDSw==
   dependencies:
     "@chec/commerce.js" "^2.2.0"
     create-shared-react-context "^1.0.3"
